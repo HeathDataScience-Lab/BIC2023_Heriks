@@ -12,13 +12,15 @@ dtaula2 <- read.csv2("dtaula2.csv", stringsAsFactors = T)
 #04 - atribuicao de objeto. dados verdadeiros
 obj <- ggplot(dtaula2, aes(x = feve, y = marcador))
 
+head(dtaula2)
 #05 - coluna "Grupos" como um fator
-dtaula2$Grupos <- factor(dtaula2$Grupos)
+dtaula2$Grupos <- factor(dtaula2$Grupos, 
+                         levels = c("GRAVE","LEVE","IND"))
 
 #06 - niveis do marcador, pela fracao de ejecao em funcao dos grupos da doenca
 obj + geom_point(aes(shape = Grupos, color = Grupos),
                  size = 3.5, alpha=0.6) +
-  scale_color_manual(values = c("#f8766d", "#56a8f4", "#f8cf51"))+
+  scale_color_manual(values = c("green", "cyan", "red"))+
   xlab("Fração de Ejeção do VE") + ylab("D.O Marcador")
   
 #07 - Bubble chart - niveis do marcador, fracao de ejecao, NYHA e grupos
